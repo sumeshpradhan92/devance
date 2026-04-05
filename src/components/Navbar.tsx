@@ -11,16 +11,31 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
+// Pages whose hero section has a DARK background —
+// navbar text must be light when unscrolled on these pages
+const DARK_HERO_PAGES = ["/about"];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    // Reset scroll state on route change
+    setScrolled(window.scrollY > 40);
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
+
+  // When on a dark-hero page AND not yet scrolled → use light text
+  const isDarkHero = DARK_HERO_PAGES.includes(pathname) && !scrolled;
+
+  // Resolved colours based on context
+  const linkColor = isDarkHero ? "rgba(250,246,239,0.85)" : "var(--ink)";
+  const activeLinkColor = "var(--saffron)";
+  const subtaglineColor = isDarkHero ? "rgba(250,246,239,0.45)" : "var(--ink-light)";
+  const hamburgerColor = isDarkHero ? "var(--cream)" : "var(--ink)";
 
   return (
     <header
@@ -31,91 +46,81 @@ export default function Navbar() {
         right: 0,
         zIndex: 1000,
         transition: "all 0.4s ease",
-        background: scrolled
-          ? "rgba(250,246,239,0.92)"
-          : "transparent",
+        background: scrolled ? "rgba(250,246,239,0.95)" : "transparent",
         backdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled
-          ? "1px solid rgba(200,75,31,0.15)"
-          : "none",
+        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(200,75,31,0.15)" : "none",
         padding: scrolled ? "12px 0" : "20px 0",
       }}
     >
       <div
         className="container"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
+        style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}
       >
-        {/* Logo */}
+        {/* ── Logo ── */}
         <Link href="/" style={{ textDecoration: "none" }}>
           <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
             <span
               className="font-display"
-              style={{
-                fontSize: "26px",
-                fontWeight: 900,
-                color: "var(--saffron)",
-                letterSpacing: "-0.5px",
-              }}
+              style={{ fontSize: "26px", fontWeight: 900, color: "var(--saffron)", letterSpacing: "-0.5px" }}
             >
               Devance
             </span>
             <span
               className="font-deva"
-              style={{
-                fontSize: "10px",
-                color: "var(--ink-light)",
-                letterSpacing: "1px",
-              }}
+              style={{ fontSize: "10px", color: subtaglineColor, letterSpacing: "1px", transition: "color 0.4s" }}
             >
               भवानीपटना से दुनिया तक
             </span>
           </div>
         </Link>
 
-        {/* Desktop Nav */}
+        {/* ── Desktop Nav ── */}
         <nav style={{ display: "flex", gap: "36px", alignItems: "center" }}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{
-                textDecoration: "none",
-                fontFamily: "'Outfit', sans-serif",
-                fontWeight: pathname === link.href ? 600 : 400,
-                fontSize: "15px",
-                color: pathname === link.href ? "var(--saffron)" : "var(--ink)",
-                position: "relative",
-                paddingBottom: "4px",
-                transition: "color 0.2s",
-              }}
-              className="nav-link"
-            >
-              {link.label}
-              {pathname === link.href && (
-                <span
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: "2px",
-                    background: "var(--saffron)",
-                    borderRadius: "2px",
-                  }}
-                />
-              )}
-            </Link>
-          ))}
-          <Link href="/contact" className="btn-primary" style={{ padding: "10px 24px", fontSize: "14px" }}>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  textDecoration: "none",
+                  
+                  fontWeight: isActive ? 600 : 400,
+                  fontSize: "15px",
+                  color: isActive ? activeLinkColor : linkColor,
+                  position: "relative",
+                  paddingBottom: "4px",
+                  transition: "color 0.3s",
+                }}
+              >
+                {link.label}
+                {isActive && (
+                  <span
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "2px",
+                      background: "var(--saffron)",
+                      borderRadius: "2px",
+                    }}
+                  />
+                )}
+              </Link>
+            );
+          })}
+          <Link
+            href="/contact"
+            className="btn-primary"
+            style={{ padding: "10px 24px", fontSize: "14px" }}
+          >
             Let&apos;s Talk →
           </Link>
         </nav>
 
-        {/* Mobile hamburger */}
+        {/* ── Mobile Hamburger ── */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
@@ -123,8 +128,9 @@ export default function Navbar() {
             background: "none",
             border: "none",
             cursor: "pointer",
-            color: "var(--ink)",
+            color: hamburgerColor,
             fontSize: "24px",
+            transition: "color 0.3s",
           }}
           className="hamburger"
           aria-label="Toggle menu"
@@ -133,7 +139,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ── Mobile Menu ── */}
       {menuOpen && (
         <div
           style={{
@@ -152,7 +158,6 @@ export default function Navbar() {
                 display: "block",
                 padding: "12px 0",
                 textDecoration: "none",
-                fontFamily: "'Outfit', sans-serif",
                 fontWeight: 500,
                 fontSize: "16px",
                 color: pathname === link.href ? "var(--saffron)" : "var(--ink)",

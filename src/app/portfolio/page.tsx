@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
+"use client";
+import { useState, useMemo } from "react";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Portfolio – Devance | Web Projects from Bhawanipatna, Odisha",
-  description:
-    "Explore Devance's portfolio of web design, development, and e-commerce projects built for clients across Odisha and India. Modern, fast, and results-driven.",
-};
 
 const projects = [
   {
@@ -82,9 +77,22 @@ const projects = [
   },
 ];
 
-const filters = ["All", "E-Commerce", "Brand Website", "SaaS Platform", "Travel Portal", "Health & Wellness", "Corporate Website"];
+const ALL = "All";
 
-export default function PortfolioPage() {
+// Derive unique categories from projects data
+const CATEGORIES = [ALL, ...Array.from(new Set(projects.map((p) => p.category)))];
+
+export default function PortfolioClient() {
+  const [activeFilter, setActiveFilter] = useState(ALL);
+
+  const filtered = useMemo(
+    () =>
+      activeFilter === ALL
+        ? projects
+        : projects.filter((p) => p.category === activeFilter),
+    [activeFilter]
+  );
+
   return (
     <>
       {/* ── HERO ── */}
@@ -96,12 +104,12 @@ export default function PortfolioPage() {
           overflow: "hidden",
         }}
       >
-        <div
-          className="dot-grid"
-          style={{ position: "absolute", inset: 0 }}
-        />
+        <div className="dot-grid" style={{ position: "absolute", inset: 0 }} />
         <div className="container" style={{ position: "relative" }}>
-          <p className="font-deva" style={{ color: "var(--saffron)", fontSize: "14px", letterSpacing: "3px", marginBottom: "16px" }}>
+          <p
+            className="font-deva"
+            style={{ color: "var(--saffron)", fontSize: "14px", letterSpacing: "3px", marginBottom: "16px" }}
+          >
             हमारा काम
           </p>
           <h1
@@ -119,8 +127,8 @@ export default function PortfolioPage() {
             <span style={{ color: "var(--saffron)" }}>Speak for Themselves.</span>
           </h1>
           <p style={{ fontSize: "18px", lineHeight: "1.8", color: "var(--ink-light)", maxWidth: "520px" }}>
-            A curated selection of our web design, development, and digital 
-            product work — built with care for clients across Odisha and India.
+            A curated selection of our web design, development, and digital product work
+            — built with care for clients across Odisha and India.
           </p>
         </div>
       </section>
@@ -129,182 +137,167 @@ export default function PortfolioPage() {
       <section style={{ padding: "80px 0 100px", background: "var(--cream)" }}>
         <div className="container">
 
-          {/* Filter bar */}
-          <div
-            style={{
-              display: "flex",
-              gap: "8px",
-              flexWrap: "wrap",
-              marginBottom: "48px",
-            }}
-          >
-            {filters.map((f) => (
-              <span
-                key={f}
-                style={{
-                  padding: "6px 18px",
-                  borderRadius: "100px",
-                  fontSize: "13px",
-                  fontWeight: f === "All" ? 600 : 400,
-                  background: f === "All" ? "var(--saffron)" : "transparent",
-                  color: f === "All" ? "white" : "var(--ink-light)",
-                  border: "1px solid",
-                  borderColor: f === "All" ? "var(--saffron)" : "rgba(44,24,16,0.15)",
-                  cursor: "pointer",
-                }}
-              >
-                {f}
-              </span>
-            ))}
-          </div>
-
-          {/* Projects */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "28px" }}>
-            {projects.map((project) => (
-              <article
-                key={project.id}
-                className="card"
-                style={{ overflow: "hidden" }}
-              >
-                {/* Project visual */}
-                <div
+          {/* ── Filter Bar ── */}
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "48px" }}>
+            {CATEGORIES.map((cat) => {
+              const isActive = activeFilter === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveFilter(cat)}
                   style={{
-                    height: "220px",
-                    background: project.bg,
-                    borderBottom: `3px solid ${project.color}22`,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative",
-                    overflow: "hidden",
+                    padding: "7px 20px",
+                    borderRadius: "100px",
+                    fontSize: "13px",
+                    fontWeight: isActive ? 600 : 400,
+                    background: isActive ? "var(--saffron)" : "transparent",
+                    color: isActive ? "white" : "var(--ink-light)",
+                    border: "1px solid",
+                    borderColor: isActive ? "var(--saffron)" : "rgba(44,24,16,0.18)",
+                    cursor: "pointer",
+                    transition: "all 0.22s ease",
+                    outline: "none",
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--saffron)";
+                      (e.currentTarget as HTMLButtonElement).style.color = "var(--saffron)";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(44,24,16,0.18)";
+                      (e.currentTarget as HTMLButtonElement).style.color = "var(--ink-light)";
+                    }
                   }}
                 >
-                  {/* Year badge */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "16px",
-                      left: "16px",
-                      fontSize: "12px",
-                      color: project.color,
-                      fontWeight: 600,
-                      letterSpacing: "1px",
-                    }}
-                  >
-                    {project.year}
-                  </div>
-
-                  {/* Category badge */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "16px",
-                      right: "16px",
-                      background: project.color,
-                      color: "white",
-                      padding: "4px 12px",
-                      borderRadius: "100px",
-                      fontSize: "11px",
-                      fontWeight: 600,
-                      letterSpacing: "0.5px",
-                    }}
-                  >
-                    {project.category}
-                  </div>
-
-                  {/* Big letter watermark */}
-                  <span
-                    className="font-display"
-                    style={{
-                      fontSize: "120px",
-                      fontWeight: 900,
-                      color: project.color,
-                      opacity: 0.12,
-                      userSelect: "none",
-                    }}
-                  >
-                    {project.title[0]}
-                  </span>
-
-                  {/* Outcome pill */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: "16px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      background: "rgba(255,255,255,0.9)",
-                      border: `1px solid ${project.color}30`,
-                      borderRadius: "100px",
-                      padding: "4px 16px",
-                      fontSize: "12px",
-                      color: project.color,
-                      fontWeight: 600,
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    ↑ {project.outcome}
-                  </div>
-                </div>
-
-                {/* Project info */}
-                <div style={{ padding: "28px" }}>
-                  <h2
-                    className="font-display"
-                    style={{
-                      fontSize: "22px",
-                      fontWeight: 700,
-                      color: "var(--ink)",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    {project.title}
-                  </h2>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      lineHeight: "1.7",
-                      color: "var(--ink-light)",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    {project.description}
-                  </p>
-
-                  {/* Tags */}
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "20px" }}>
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        style={{
-                          padding: "3px 10px",
-                          background: `${project.color}12`,
-                          color: project.color,
-                          borderRadius: "4px",
-                          fontSize: "11px",
-                          fontWeight: 600,
-                          letterSpacing: "0.5px",
-                        }}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <div
-                    style={{
-                      fontSize: "13px",
-                      fontWeight: 600,
-                      color: project.color,
-                      cursor: "pointer",
-                    }}
-                  >
-                    View Case Study →
-                  </div>
-                </div>
-              </article>
-            ))}
+                  {cat}
+                  {isActive && (
+                    <span style={{ marginLeft: "6px", opacity: 0.75, fontSize: "11px" }}>
+                      ({filtered.length})
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
+
+          {/* ── Project Cards ── */}
+          {filtered.length === 0 ? (
+            <div style={{ textAlign: "center", padding: "80px 0", color: "var(--ink-light)" }}>
+              No projects found in this category yet.
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
+                gap: "28px",
+              }}
+            >
+              {filtered.map((project) => (
+                <article
+                  key={project.id}
+                  className="card"
+                  style={{ overflow: "hidden", transition: "transform 0.25s ease, box-shadow 0.25s ease" }}
+                >
+                  {/* Visual area */}
+                  <div
+                    style={{
+                      height: "220px",
+                      background: project.bg,
+                      borderBottom: `3px solid ${project.color}22`,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      position: "relative",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {/* Year */}
+                    <div
+                      style={{
+                        position: "absolute", top: "16px", left: "16px",
+                        fontSize: "12px", color: project.color, fontWeight: 600, letterSpacing: "1px",
+                      }}
+                    >
+                      {project.year}
+                    </div>
+
+                    {/* Category badge */}
+                    <div
+                      style={{
+                        position: "absolute", top: "16px", right: "16px",
+                        background: project.color, color: "white",
+                        padding: "4px 12px", borderRadius: "100px",
+                        fontSize: "11px", fontWeight: 600, letterSpacing: "0.5px",
+                      }}
+                    >
+                      {project.category}
+                    </div>
+
+                    {/* Big letter */}
+                    <span
+                      className="font-display"
+                      style={{ fontSize: "120px", fontWeight: 900, color: project.color, opacity: 0.12, userSelect: "none" }}
+                    >
+                      {project.title[0]}
+                    </span>
+
+                    {/* Outcome pill */}
+                    <div
+                      style={{
+                        position: "absolute", bottom: "16px", left: "50%", transform: "translateX(-50%)",
+                        background: "rgba(255,255,255,0.92)",
+                        border: `1px solid ${project.color}30`,
+                        borderRadius: "100px", padding: "4px 16px",
+                        fontSize: "12px", color: project.color, fontWeight: 600, whiteSpace: "nowrap",
+                      }}
+                    >
+                      ↑ {project.outcome}
+                    </div>
+                  </div>
+
+                  {/* Info */}
+                  <div style={{ padding: "28px" }}>
+                    <h2
+                      className="font-display"
+                      style={{ fontSize: "22px", fontWeight: 700, color: "var(--ink)", marginBottom: "10px" }}
+                    >
+                      {project.title}
+                    </h2>
+                    <p style={{ fontSize: "14px", lineHeight: "1.7", color: "var(--ink-light)", marginBottom: "20px" }}>
+                      {project.description}
+                    </p>
+
+                    {/* Tags */}
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px", marginBottom: "20px" }}>
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          style={{
+                            padding: "3px 10px",
+                            background: `${project.color}12`,
+                            color: project.color,
+                            borderRadius: "4px",
+                            fontSize: "11px",
+                            fontWeight: 600,
+                            letterSpacing: "0.5px",
+                          }}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <span style={{ fontSize: "13px", fontWeight: 600, color: project.color, cursor: "pointer" }}>
+                      View Case Study →
+                    </span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -312,12 +305,7 @@ export default function PortfolioPage() {
       <section style={{ padding: "72px 0", background: "var(--ink)" }}>
         <div className="container">
           <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: "32px",
-              textAlign: "center",
-            }}
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "32px", textAlign: "center" }}
             className="stats-grid"
           >
             {[
@@ -339,16 +327,17 @@ export default function PortfolioPage() {
           </div>
         </div>
         <style>{`
-          @media (max-width: 600px) {
-            .stats-grid { grid-template-columns: 1fr 1fr !important; }
-          }
+          @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr 1fr !important; } }
         `}</style>
       </section>
 
       {/* ── CTA ── */}
       <section style={{ padding: "80px 0", background: "var(--cream)", textAlign: "center" }}>
         <div className="container">
-          <p className="font-deva" style={{ color: "var(--saffron)", fontSize: "14px", letterSpacing: "3px", marginBottom: "12px" }}>
+          <p
+            className="font-deva"
+            style={{ color: "var(--saffron)", fontSize: "14px", letterSpacing: "3px", marginBottom: "12px" }}
+          >
             अगली परियोजना
           </p>
           <h2 className="section-title" style={{ marginBottom: "16px" }}>
