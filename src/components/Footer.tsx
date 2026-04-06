@@ -37,10 +37,10 @@ export default function Footer() {
               building modern experiences for businesses across India and beyond.
             </p>
             <div style={{ marginTop: "24px", display: "flex", gap: "16px" }}>
-              {["Twitter", "Instagram", "LinkedIn", "GitHub"].map((s) => (
+              {["I", "N", "S", "T"].map((s) => (
                 <a
                   key={s}
-                  href="#"
+                  href="https://www.instagram.com/devance.online/"
                   style={{
                     width: "36px",
                     height: "36px",

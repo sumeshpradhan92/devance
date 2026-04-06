@@ -5,76 +5,77 @@ import Link from "next/link";
 const projects = [
   {
     id: 1,
-    title: "KalahandiCrafts",
-    category: "E-Commerce",
-    tags: ["Next.js", "Supabase", "Razorpay"],
+    title: "PhytoAi - Saas for Botany",
+    category: "SAAS",
+    tags: ["Next.js", "Supabase", "BotanyAI"],
     description:
-      "A full-stack e-commerce platform for handcrafted Kalahandi products — connecting local artisans to customers across India. Built with Next.js 14, Supabase, and Razorpay payment integration.",
+      "An AI SaaS platform for botany students, professors, and researchers. Get accurate plant characters for field studies and herbarium work Built with Next.js 14, Supabase, and Ai integration.",
     color: "#C84B1F",
     bg: "rgba(200,75,31,0.06)",
-    year: "2024",
-    outcome: "3x increase in online orders",
+    year: "2025",
+    outcome: "3x increase in Education",
+    link : "https://phytoai.site",
   },
-  {
-    id: 2,
-    title: "NayakFoods",
-    category: "Brand Website",
-    tags: ["Next.js", "Tailwind", "SEO"],
-    description:
-      "A modern brand website for a Bhawanipatna-based food business. Focused on storytelling, local SEO, and a rich visual identity that reflects Odia food culture.",
-    color: "#E8A87C",
-    bg: "rgba(232,168,124,0.1)",
-    year: "2024",
-    outcome: "Top 3 Google rankings locally",
-  },
-  {
-    id: 3,
-    title: "OdishaTrails",
-    category: "Travel Portal",
-    tags: ["React", "TypeScript", "API"],
-    description:
-      "An interactive travel portal showcasing hidden gems across Odisha — Kalahandi, Koraput, and beyond. Features dynamic itinerary builders and local guide directories.",
-    color: "#2D5016",
-    bg: "rgba(45,80,22,0.06)",
-    year: "2023",
-    outcome: "Featured in local media",
-  },
-  {
-    id: 4,
-    title: "LegalBharat",
-    category: "SaaS Platform",
-    tags: ["Next.js", "PostgreSQL", "Auth"],
-    description:
-      "A legal document management platform built for small law firms in tier-2 Indian cities. Secure, fast, and fully accessible on mobile.",
-    color: "#8B5CF6",
-    bg: "rgba(139,92,246,0.06)",
-    year: "2024",
-    outcome: "200+ users in first month",
-  },
-  {
-    id: 5,
-    title: "AyurGram",
-    category: "Health & Wellness",
-    tags: ["Next.js", "Supabase", "UI/UX"],
-    description:
-      "A wellness booking platform connecting users to Ayurvedic practitioners across Odisha. Clean, calming design paired with powerful booking infrastructure.",
-    color: "#D4A853",
-    bg: "rgba(212,168,83,0.08)",
-    year: "2023",
-    outcome: "4.9★ client rating",
-  },
-  {
-    id: 6,
-    title: "StartupBridge",
-    category: "Corporate Website",
-    tags: ["React", "Framer Motion", "CMS"],
-    description:
-      "A sleek corporate website for a Bhubaneswar-based startup ecosystem builder. Features animated case studies, investor pitch sections, and integrated blog.",
-    color: "#1E40AF",
-    bg: "rgba(30,64,175,0.06)",
-    year: "2023",
-    outcome: "Attracted 5 new investors",
-  },
+  // {
+  //   id: 2,
+  //   title: "NayakFoods",
+  //   category: "Brand Website",
+  //   tags: ["Next.js", "Tailwind", "SEO"],
+  //   description:
+  //     "A modern brand website for a Bhawanipatna-based food business. Focused on storytelling, local SEO, and a rich visual identity that reflects Odia food culture.",
+  //   color: "#E8A87C",
+  //   bg: "rgba(232,168,124,0.1)",
+  //   year: "2024",
+  //   outcome: "Top 3 Google rankings locally",
+  // },
+  // {
+  //   id: 3,
+  //   title: "OdishaTrails",
+  //   category: "Travel Portal",
+  //   tags: ["React", "TypeScript", "API"],
+  //   description:
+  //     "An interactive travel portal showcasing hidden gems across Odisha — Kalahandi, Koraput, and beyond. Features dynamic itinerary builders and local guide directories.",
+  //   color: "#2D5016",
+  //   bg: "rgba(45,80,22,0.06)",
+  //   year: "2023",
+  //   outcome: "Featured in local media",
+  // },
+  // {
+  //   id: 4,
+  //   title: "LegalBharat",
+  //   category: "SaaS Platform",
+  //   tags: ["Next.js", "PostgreSQL", "Auth"],
+  //   description:
+  //     "A legal document management platform built for small law firms in tier-2 Indian cities. Secure, fast, and fully accessible on mobile.",
+  //   color: "#8B5CF6",
+  //   bg: "rgba(139,92,246,0.06)",
+  //   year: "2024",
+  //   outcome: "200+ users in first month",
+  // },
+  // {
+  //   id: 5,
+  //   title: "AyurGram",
+  //   category: "Health & Wellness",
+  //   tags: ["Next.js", "Supabase", "UI/UX"],
+  //   description:
+  //     "A wellness booking platform connecting users to Ayurvedic practitioners across Odisha. Clean, calming design paired with powerful booking infrastructure.",
+  //   color: "#D4A853",
+  //   bg: "rgba(212,168,83,0.08)",
+  //   year: "2023",
+  //   outcome: "4.9★ client rating",
+  // },
+  // {
+  //   id: 6,
+  //   title: "StartupBridge",
+  //   category: "Corporate Website",
+  //   tags: ["React", "Framer Motion", "CMS"],
+  //   description:
+  //     "A sleek corporate website for a Bhubaneswar-based startup ecosystem builder. Features animated case studies, investor pitch sections, and integrated blog.",
+  //   color: "#1E40AF",
+  //   bg: "rgba(30,64,175,0.06)",
+  //   year: "2023",
+  //   outcome: "Attracted 5 new investors",
+  // },
 ];
 
 const ALL = "All";
@@ -289,10 +290,12 @@ export default function PortfolioClient() {
                         </span>
                       ))}
                     </div>
-
+                    
+                    <Link href={project.link} style={{ textDecoration: "none" }}>
                     <span style={{ fontSize: "13px", fontWeight: 600, color: project.color, cursor: "pointer" }}>
-                      View Case Study →
+                      Visit Website →
                     </span>
+                    </Link>
                   </div>
                 </article>
               ))}
@@ -309,10 +312,10 @@ export default function PortfolioClient() {
             className="stats-grid"
           >
             {[
-              { value: "30+", label: "Projects Delivered" },
-              { value: "6+", label: "Industries Served" },
-              { value: "15+", label: "Happy Clients" },
-              { value: "100%", label: "On-Time Delivery" },
+             { value: "48hr", label: "Avg Response Time" },
+              { value: "100%", label: "Client Satisfaction" },
+              { value: "3Yr+", label: "Learning & Building" },
+              { value: "15D", label: "Delivery Guarantee" },
             ].map((s) => (
               <div key={s.label}>
                 <div

@@ -32,10 +32,10 @@ const services = [
 ];
 
 const stats = [
-  { value: "30+", label: "Projects Delivered" },
+  { value: "48hr", label: "Avg Response Time" },
   { value: "100%", label: "Client Satisfaction" },
-  { value: "3+", label: "Years Experience" },
-  { value: "15+", label: "Happy Clients" },
+  { value: "3Yr+", label: "Learning & Building" },
+  { value: "15D", label: "Delivery Guarantee" },
 ];
 
 const testimonials = [
@@ -427,7 +427,7 @@ export default function HomePage() {
       </section>
 
       {/* ── PORTFOLIO PREVIEW ── */}
-      <section style={{ padding: "100px 0", background: "var(--cream-dark)" }}>
+      {/* <section style={{ padding: "100px 0", background: "var(--cream-dark)" }}>
         <div className="container">
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "48px", flexWrap: "wrap", gap: "20px" }}>
             <div>
@@ -439,9 +439,9 @@ export default function HomePage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "24px" }}>
             {[
-              { title: "KalahandiCrafts", category: "E-Commerce", color: "#E8A87C" },
-              { title: "NayakFoods", category: "Brand Website", color: "#C84B1F" },
-              { title: "OdishaTrails", category: "Travel Portal", color: "#2D5016" },
+              { title: "PhytoAI", category: "SaaS", color: "#E8A87C", link: "https://phytoai.site/"},
+              { title: "HonestJob", category: "Brand Website", color: "#C84B1F", link: "https://honestjob.in/" },
+              { title: "OdishaTrails", category: "Travel Portal", color: "#2D5016", link: "https://phytoai.site/" },
             ].map((project) => (
               <div
                 key={project.title}
@@ -462,7 +462,7 @@ export default function HomePage() {
                     className="font-display"
                     style={{ fontSize: "64px", opacity: 0.15, fontWeight: 900 }}
                   >
-                    D
+                    De.
                   </span>
                   <div
                     style={{
@@ -485,15 +485,17 @@ export default function HomePage() {
                   <h3 className="font-display" style={{ fontSize: "20px", fontWeight: 700, color: "var(--ink)", marginBottom: "8px" }}>
                     {project.title}
                   </h3>
+                  <Link style={{textDecoration: "none"}} href={project.link}>
                   <p style={{ fontSize: "14px", color: "var(--ink-light)" }}>
                     View case study →
                   </p>
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ── TESTIMONIALS ── */}
       <section style={{ padding: "100px 0", background: "var(--cream)" }}>
