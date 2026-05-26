@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services – Devance | Web Design, Development & SEO in Odisha",
   description:
-    "Devance offers web design, Next.js development, SEO optimisation, e-commerce, and website maintenance in Bhawanipatna, Odisha. Affordable, modern, and results-driven.",
+    "Devance offers web design, Next.js development, SEO optimisation, and e-commerce solutions in Bhawanipatna, Odisha. Affordable, modern, and results-driven.",
 };
 
 const services = [
@@ -67,21 +67,6 @@ const services = [
       "Mobile-optimised checkout",
     ],
     color: "#8B5CF6",
-  },
-  {
-    icon: "🔧",
-    number: "05",
-    title: "Website Maintenance",
-    subtitle: "Keep your site fast, secure & up-to-date",
-    desc: "Once your site is live, we stay with you. Monthly maintenance plans include performance monitoring, security updates, content changes, and priority support.",
-    features: [
-      "Monthly performance reports",
-      "Security patches & updates",
-      "Content updates & revisions",
-      "Uptime monitoring",
-      "Priority support via WhatsApp/Email",
-    ],
-    color: "var(--gold)",
   },
 ];
 

@@ -104,7 +104,7 @@ export default function Footer() {
             <h4 style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "2px", textTransform: "uppercase", color: "var(--terracotta)", marginBottom: "20px" }}>
               Services
             </h4>
-            {["Web Design", "Web Development", "SEO Optimisation", "Performance", "E-Commerce", "Maintenance"].map((s) => (
+            {["Web Design", "Web Development", "SEO Optimisation", "Performance", "E-Commerce", "Web Apps"].map((s) => (
               <div
                 key={s}
                 style={{

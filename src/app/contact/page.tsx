@@ -251,7 +251,6 @@ export default function ContactClient() {
                           <option value="web-development">Web Development</option>
                           <option value="ecommerce">E-Commerce</option>
                           <option value="seo">SEO Optimisation</option>
-                          <option value="maintenance">Website Maintenance</option>
                           <option value="other">Other</option>
                         </select>
                       </div>
