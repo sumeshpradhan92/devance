@@ -242,7 +242,7 @@ export default function HomePage() {
           }}
         >
           {[...Array(3)].flatMap(() =>
-            ["Web Design", "SEO", "Next.js", "React", "UI/UX", "E-Commerce", "Branding", "Performance"].map((s) => (
+            ["Web Design", "SEO", "Next.js", "React", "Web Apps", "E-Commerce", "Branding", "Performance"].map((s) => (
               <span
                 key={Math.random()}
                 className="font-deva"
@@ -279,7 +279,7 @@ export default function HomePage() {
               gap: "24px",
             }}
           >
-            {services.map((s, i) => (
+            {services.map((s) => (
               <div
                 key={s.title}
                 className="card"

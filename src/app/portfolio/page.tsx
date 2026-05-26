@@ -56,7 +56,7 @@ const projects = [
   //   id: 5,
   //   title: "AyurGram",
   //   category: "Health & Wellness",
-  //   tags: ["Next.js", "Supabase", "UI/UX"],
+  //   tags: ["Next.js", "Supabase", "Booking"],
   //   description:
   //     "A wellness booking platform connecting users to Ayurvedic practitioners across Odisha. Clean, calming design paired with powerful booking infrastructure.",
   //   color: "#D4A853",

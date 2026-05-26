@@ -35,7 +35,7 @@ const team = [
     name: "Sumesh Kumar Pradhan",
     role: "Founder & Lead Developer",
     bio: "A self-taught developer from Bhawanipatna with a passion for building the web and bringing digital transformation to Kalahandi. Sumesh leads every project with a hands-on approach — from strategy to deployment.",
-    skills: ["Next.js", "React", "TypeScript", "Supabase", "UI/UX", "SEO"],
+    skills: ["Next.js", "React", "TypeScript", "Supabase", "Performance", "SEO"],
     emoji: "👨‍💻",
   },
 ];

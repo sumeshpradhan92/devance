@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Services – Devance | Web Design, Development & SEO in Odisha",
   description:
-    "Devance offers web design, Next.js development, SEO optimisation, e-commerce, and UI/UX services in Bhawanipatna, Odisha. Affordable, modern, and results-driven.",
+    "Devance offers web design, Next.js development, SEO optimisation, e-commerce, and website maintenance in Bhawanipatna, Odisha. Affordable, modern, and results-driven.",
 };
 
 const services = [
@@ -15,7 +15,7 @@ const services = [
     subtitle: "Visually stunning, culturally rooted interfaces",
     desc: "We design websites that don't just look good — they feel right. Our design process blends modern UI principles with the visual richness of Indian culture, creating experiences your visitors remember.",
     features: [
-      "Custom UI/UX design from scratch",
+      "Custom website design from scratch",
       "Figma prototyping & wireframing",
       "Mobile-first, responsive layouts",
       "Brand identity integration",
@@ -83,21 +83,6 @@ const services = [
     ],
     color: "var(--gold)",
   },
-  {
-    icon: "📱",
-    number: "06",
-    title: "UI/UX Consulting",
-    subtitle: "Design audits & strategy for existing products",
-    desc: "Already have a product but struggling with user experience? We audit, redesign, and improve your existing website or app to increase engagement and reduce drop-off.",
-    features: [
-      "UX audit & heatmap analysis",
-      "Conversion rate optimisation",
-      "Design system creation",
-      "A/B testing strategy",
-      "Accessibility improvements",
-    ],
-    color: "var(--terracotta)",
-  },
 ];
 
 const process = [
@@ -154,7 +139,7 @@ export default function ServicesPage() {
       <section style={{ padding: "100px 0", background: "var(--cream)" }}>
         <div className="container">
           <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
-            {services.map((service, i) => (
+            {services.map((service) => (
               <div
                 key={service.title}
                 className="card"

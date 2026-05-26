@@ -21,11 +21,13 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Reset scroll state on route change
-    setScrolled(window.scrollY > 40);
     const onScroll = () => setScrolled(window.scrollY > 40);
+    const frame = window.requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [pathname]);
 
   // When on a dark-hero page AND not yet scrolled → use light text
