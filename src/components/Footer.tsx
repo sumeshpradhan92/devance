@@ -129,7 +129,7 @@ export default function Footer() {
               <br />
               <p>
                 <a href="mailto:hello@devance.in" style={{ color: "var(--terracotta)", textDecoration: "none" }}>
-                  ✉ hello@devance.online
+                  ✉ hello@devance.in
                 </a>
               </p>
               <br />

@@ -164,7 +164,7 @@ export default function ContactClient() {
               <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginBottom: "40px" }}>
                 {[
                   { icon: "📍", title: "Remote",  lines: ["Bhawanipatna, Kalahandi", "Odisha – 766001, India"], link: null },
-                  { icon: "✉️", title: "Email",        lines: ["hello@devance.online"],              link: "mailto:hello@devance.online" },
+                  { icon: "✉️", title: "Email",        lines: ["hello@devance.in"],              link: "mailto:hello@devance.in" },
                   { icon: "💬", title: "WhatsApp",     lines: ["Chat for quick responses"],      link: "https://wa.me/91801873310" },
                 ].map((item) => (
                   <div key={item.title} className="card"
@@ -240,7 +240,7 @@ export default function ContactClient() {
                       <div>
                         <label style={labelStyle}>Phone Number</label>
                         <input type="tel" name="phone" value={form.phone} onChange={handleChange} onBlur={handleBlur}
-                          placeholder="+91 98765 43210" style={iStyle("phone")} />
+                          placeholder="+91 80187 819xx" style={iStyle("phone")} />
                       </div>
                       <div>
                         <label style={labelStyle}>Service Needed</label>

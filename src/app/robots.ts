@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://devance.online/sitemap.xml",
+    sitemap: "https://devance.in/sitemap.xml",
   };
 }

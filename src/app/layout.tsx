@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     "Devance online Agency",
     "website development Bhawanipatna",
   ],
-  authors: [{ name: "Sumesh Kumar Pradhan", url: "https://devance.online" }],
+  authors: [{ name: "Sumesh Kumar Pradhan", url: "https://devance.in" }],
   creator: "Devance",
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://devance.online",
+    url: "https://devance.in",
     siteName: "Devance",
     title: "Devance online – Digital Web Development Agency",
     description:
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Devance online – Digital Web Development Agency",
     description: "Crafting the digital future from Kalahandi.",
   },
-  metadataBase: new URL("https://devance.online"),
+  metadataBase: new URL("https://devance.in"),
 };
 
 export default function RootLayout({
